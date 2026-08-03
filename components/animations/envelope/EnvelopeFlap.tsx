@@ -6,23 +6,25 @@ interface Props {
   opened: boolean;
 }
 
-export default function EnvelopeFlap({ opened }: Props) {
+export default function EnvelopeFlap({
+  opened,
+}: Props) {
   return (
     <motion.div
       initial={false}
       animate={{
-        rotateX: opened ? -112 : 0,
-        rotateZ: opened ? 0.4 : 0,
-        y: opened ? -2 : 0,
+        rotateX: opened ? -118 : 0,
+        rotateZ: opened ? 0.5 : 0,
+        y: opened ? -3 : 0,
       }}
       transition={{
-        duration: 1.05,
-        ease: [0.22, 1, 0.36, 1], // Luxury easing
+        duration: 1.1,
+        ease: [0.22, 1, 0.36, 1],
       }}
       style={{
         transformOrigin: "top center",
         transformStyle: "preserve-3d",
-        perspective: 1200,
+        perspective: 1600,
       }}
       className="
         absolute
@@ -31,36 +33,141 @@ export default function EnvelopeFlap({ opened }: Props) {
         h-1/2
         w-full
         overflow-hidden
+        z-30
       "
     >
-      {/* Flap */}
+      {/* Main Flap */}
+
       <div
         className="
           absolute
           inset-0
-          rounded-t-xl
+          rounded-t-[28px]
           border
-          border-[#E6D6BE]
+          border-[#E6D7C1]
           bg-gradient-to-b
-          from-[#F6EFE5]
-          to-[#E8DDCC]
-          shadow-md
+          from-[#FCF8F1]
+          via-[#F6EDDF]
+          to-[#ECE0CF]
+          shadow-[0_8px_18px_rgba(0,0,0,0.12)]
         "
       />
 
-      {/* Fold highlight */}
+      {/* Inner Gold Border */}
+
       <div
         className="
           absolute
-          top-0
-          left-0
-          h-px
-          w-full
-          bg-white/70
+          inset-3
+          rounded-t-[22px]
+          border
+          border-[#D8BE87]/35
         "
       />
 
-      {/* Inner shadow */}
+      {/* Premium Paper Texture */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.75),transparent_70%)]
+          opacity-80
+        "
+      />
+
+      {/* Top Highlight */}
+
+      <div
+        className="
+          absolute
+          left-0
+          top-0
+          h-px
+          w-full
+          bg-white/80
+        "
+      />
+
+      {/* Fold Shadow */}
+
+      <motion.div
+        animate={{
+          opacity: opened ? 0.22 : 0.08,
+        }}
+        transition={{
+          duration: 0.4,
+        }}
+        className="
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-10
+          bg-gradient-to-t
+          from-black/15
+          via-black/5
+          to-transparent
+        "
+      />
+
+      {/* Side Lighting */}
+
+      <div
+        className="
+          absolute
+          left-0
+          top-0
+          h-full
+          w-8
+          bg-gradient-to-r
+          from-white/20
+          to-transparent
+        "
+      />
+
+      <div
+        className="
+          absolute
+          right-0
+          top-0
+          h-full
+          w-8
+          bg-gradient-to-l
+          from-black/[0.03]
+          to-transparent
+        "
+      />
+
+      {/* Decorative Corner Details */}
+
+      <div className="absolute left-5 top-5 h-6 w-6 rounded-tl-xl border-l border-t border-[#D8BE87]/40" />
+
+      <div className="absolute right-5 top-5 h-6 w-6 rounded-tr-xl border-r border-t border-[#D8BE87]/40" />
+
+      {/* Ambient Reflection */}
+
+      <motion.div
+        animate={{
+          opacity: opened
+            ? [0.08, 0.16, 0.08]
+            : [0.04, 0.08, 0.04],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="
+          absolute
+          inset-0
+          bg-white/10
+          blur-[50px]
+        "
+      />
+
+      {/* Inner Shadow */}
+
       <div
         className="
           absolute

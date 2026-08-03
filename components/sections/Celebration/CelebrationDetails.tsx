@@ -1,73 +1,166 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import { wedding } from "@/data/wedding";
 
 export default function CelebrationDetails() {
   return (
-    <div className="mx-auto mt-20 max-w-2xl text-center">
-
-      <p className="uppercase tracking-[0.35em] text-[#C8A96A]">
-        Wedding Ceremony
-      </p>
-
-      <h3 className="mt-10 font-heading text-6xl">
-        21
-      </h3>
-
-      <p className="mt-2 text-2xl font-heading">
-        August 2026
-      </p>
-
-      <p className="mt-2 uppercase tracking-[0.3em] text-neutral-500">
-        Friday
-      </p>
-
-      <div className="mx-auto my-12 h-px w-20 bg-[#E8DFD5]" />
-
-      <p className="text-lg">
-        <strong>Time</strong>
-      </p>
-
-      <p className="mt-2 text-neutral-600">
-        {wedding.time}
-      </p>
-
-      <div className="mx-auto my-12 h-px w-20 bg-[#E8DFD5]" />
-
-      <p className="text-lg">
-        <strong>Venue</strong>
-      </p>
-
-      <h3 className="mt-4 font-heading text-4xl">
-        {wedding.venue}
-      </h3>
-
-      <p className="mt-2 text-neutral-600">
-        {wedding.place}
-      </p>
-
-      <a
-        href={wedding.map}
-        target="_blank"
-        rel="noopener noreferrer"
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+      }}
+      transition={{
+        duration: 0.8,
+      }}
+      className="mx-auto mt-20 max-w-3xl"
+    >
+      <motion.div
+        whileHover={{
+          y: -6,
+          scale: 1.01,
+        }}
+        transition={{
+          duration: 0.25,
+        }}
         className="
-          inline-block
-          mt-12
-          rounded-full
+          rounded-[36px]
           border
-          border-[#C8A96A]
-          px-8
-          py-4
-          text-sm
-          uppercase
-          tracking-[0.25em]
-          transition-all
-          duration-300
-          hover:bg-[#C8A96A]
-          hover:text-white
+          border-[#E8DFD5]
+          bg-white/70
+          px-10
+          py-12
+          text-center
+          backdrop-blur-lg
+          shadow-[0_20px_60px_rgba(0,0,0,0.08)]
         "
       >
-        Get Directions
-      </a>
+        <p
+          className="
+            uppercase
+            tracking-[0.35em]
+            text-sm
+            text-[#C8A96A]
+          "
+        >
+          Wedding Ceremony
+        </p>
 
-    </div>
+        <h3 className="mt-8 font-heading text-7xl gold-gradient">
+          21
+        </h3>
+
+        <p className="mt-2 font-heading text-3xl">
+          August 2026
+        </p>
+
+        <p
+          className="
+            mt-3
+            uppercase
+            tracking-[0.35em]
+            text-neutral-500
+          "
+        >
+          Friday
+        </p>
+
+        <div
+          className="
+            mx-auto
+            my-10
+            h-px
+            w-32
+            bg-gradient-to-r
+            from-transparent
+            via-[#C8A96A]
+            to-transparent
+          "
+        />
+
+        <div className="space-y-8">
+
+          <div>
+            <p
+              className="
+                uppercase
+                tracking-[0.3em]
+                text-xs
+                text-neutral-500
+              "
+            >
+              Time
+            </p>
+
+            <p className="mt-3 text-xl font-medium text-[#355D50]">
+              {wedding.time}
+            </p>
+          </div>
+
+          <div>
+            <p
+              className="
+                uppercase
+                tracking-[0.3em]
+                text-xs
+                text-neutral-500
+              "
+            >
+              Venue
+            </p>
+
+            <h4 className="mt-3 font-heading text-4xl">
+              {wedding.venue}
+            </h4>
+
+            <p className="mt-3 text-neutral-600">
+              {wedding.place}
+            </p>
+          </div>
+
+        </div>
+
+        <motion.a
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{
+            scale: 0.98,
+          }}
+          href={wedding.map}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            mt-12
+            inline-flex
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#C8A96A]
+            px-10
+            py-4
+            text-sm
+            uppercase
+            tracking-[0.3em]
+            transition-all
+            duration-300
+            hover:bg-[#C8A96A]
+            hover:text-white
+          "
+        >
+          View Location
+        </motion.a>
+
+      </motion.div>
+    </motion.div>
   );
 }
