@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import EnvelopeFront from "./EnvelopeFront";
@@ -8,38 +8,84 @@ import EnvelopeFlap from "./EnvelopeFlap";
 import WaxSeal from "./WaxSeal";
 import InvitationCard from "./InvitationCard";
 
-interface Props {
+type Phase =
+  | "idle"
+  | "opening"
+  | "lifting"
+  | "revealing"
+  | "finished";
+
+interface EnvelopeProps {
   onFinished: () => void;
 }
 
 export default function Envelope({
   onFinished,
-}: Props) {
-  const [opened, setOpened] = useState(false);
-  const [showCard, setShowCard] = useState(false);
-  const [finished, setFinished] = useState(false);
-  
+}: EnvelopeProps) {
+  const [phase, setPhase] = useState<Phase>("idle");
+
+  const opened =
+    phase === "opening" ||
+    phase === "lifting" ||
+    phase === "revealing";
+
+  const showInvitation =
+    phase === "lifting" ||
+    phase === "revealing";
+
   function handleOpen() {
-  setOpened(true);
+    if (phase !== "idle") return;
 
-  setTimeout(() => {
-    setShowCard(true);
-  }, 700);
+    setPhase("opening");
+  }
 
-  setTimeout(() => {
-    onFinished();
-  }, 2600);
-}
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    switch (phase) {
+      case "opening":
+        timer = setTimeout(() => {
+          setPhase("lifting");
+        }, 950);
+        break;
+
+      case "lifting":
+        timer = setTimeout(() => {
+          setPhase("revealing");
+        }, 1400);
+        break;
+
+      case "revealing":
+        timer = setTimeout(() => {
+          setPhase("finished");
+          onFinished();
+        }, 1200);
+        break;
+    }
+
+    return () => clearTimeout(timer);
+  }, [phase, onFinished]);
 
   return (
     <AnimatePresence>
-      {!opened && (
+      {phase !== "finished" && (
         <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+            scale: 0.96,
+          }}
+          animate={{
+            opacity: phase === "revealing" ? 0 : 1,
+            scale: phase === "revealing" ? 1.03 : 1,
+            y: 0,
+          }}
           exit={{
             opacity: 0,
           }}
           transition={{
-            duration: 0.8,
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="
             fixed
@@ -51,36 +97,63 @@ export default function Envelope({
             paper
           "
         >
-          <div
-            className="
-              relative
-              h-[250px]
-              w-[360px]
-            "
+          <motion.div
+            initial={{
+              y: 30,
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative w-[min(360px,88vw)]"
+            style={{
+              aspectRatio: "360 / 250",
+            }}
           >
-            <InvitationCard visible={showCard} />
+            <InvitationCard
+              visible={showInvitation}
+            />
 
-            <EnvelopeFront />
+            <EnvelopeFront
+              opened={opened}
+            />
 
-            <EnvelopeFlap opened={opened} />
+            <EnvelopeFlap
+              opened={opened}
+            />
 
-            <WaxSeal onOpen={handleOpen} />
+            <WaxSeal
+              onOpen={handleOpen}
+            />
 
-            <p
+            <motion.p
+              animate={{
+                opacity: phase === "idle" ? 1 : 0,
+                y: phase === "idle" ? 0 : 8,
+              }}
+              transition={{
+                duration: 0.35,
+              }}
               className="
                 absolute
                 bottom-8
                 w-full
                 text-center
-                text-xs
+                text-[11px]
                 uppercase
-                tracking-[0.35em]
+                tracking-[0.45em]
                 text-neutral-600
+                select-none
               "
             >
-              Tap the Seal
-            </p>
-          </div>
+              Open Invitation
+            </motion.p>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

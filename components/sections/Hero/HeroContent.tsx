@@ -10,7 +10,7 @@ export default function HeroContent() {
         Together with our families
       </p>
 
-      <h1 className="font-script gold-gradient text-7xl md:text-9xl mt-10">
+      <h1 className="font-script gold-gradient text-7xl sm:text-8xl md:text-9rem mt-10">
         Akhil
       </h1>
 
@@ -18,18 +18,18 @@ export default function HeroContent() {
         ♥
       </p>
 
-      <h2 className="font-script gold-gradient text-7xl md:text-9xl">
+      <h2 className="font-script gold-gradient text-7xl sm:text-8xl md:text-9rem">
         Saranya
       </h2>
 
       <div className="mt-12 space-y-2">
 
-        <p className="tracking-[0.3em] uppercase text-xs">
-          Friday
-        </p>
-
         <p className="tracking-[0.35em] uppercase text-sm">
           21 August 2026
+        </p>
+
+        <p className="tracking-[0.3em] uppercase text-xs">
+          Friday
         </p>
 
       </div>
