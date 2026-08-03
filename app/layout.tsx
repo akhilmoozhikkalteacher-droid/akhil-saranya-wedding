@@ -1,20 +1,35 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Inter,
+  Italianno,
+} from "next/font/google";
+
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-heading",
+  display: "swap",
+});
+
+const italianno = Italianno({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Akhil & Saranya",
-  description: "Wedding Invitation",
+  title: "Akhil & Saranya | Wedding Invitation",
+  description:
+    "Together with our families, we warmly invite you to celebrate our wedding.",
 };
 
 export default function RootLayout({
@@ -24,7 +39,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${cormorant.variable}`}>
+      <body
+        className={`${inter.variable} ${cormorant.variable} ${italianno.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
