@@ -5,11 +5,16 @@ import ScrollIndicator from "@/components/ui/ScrollIndicator";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden paper">
+
       <HeroImage />
+
       <HeroOverlay />
+
       <HeroContent />
+
       <ScrollIndicator />
+
     </section>
   );
 }
