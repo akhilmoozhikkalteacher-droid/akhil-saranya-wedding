@@ -2,81 +2,72 @@
 
 import { motion } from "framer-motion";
 
-interface Props {
+interface EnvelopeFlapProps {
   opened: boolean;
 }
 
 export default function EnvelopeFlap({
   opened,
-}: Props) {
+}: EnvelopeFlapProps) {
   return (
     <motion.div
       initial={false}
       animate={{
-        rotateX: opened ? -118 : 0,
-        rotateZ: opened ? 0.5 : 0,
-        y: opened ? -3 : 0,
+        rotateX: opened ? -178 : 0,
+        z: opened ? -4 : 0,
       }}
       transition={{
-        duration: 1.1,
+        duration: 1.05,
         ease: [0.22, 1, 0.36, 1],
       }}
       style={{
-        transformOrigin: "top center",
         transformStyle: "preserve-3d",
+        transformOrigin: "top center",
         perspective: 1600,
       }}
       className="
         absolute
-        left-0
+        inset-x-0
         top-0
-        h-1/2
-        w-full
-        overflow-hidden
         z-30
+        h-[126px]
       "
     >
-      {/* Main Flap */}
+      {/* Triangular Flap */}
 
-      <div
-        className="
-          absolute
-          inset-0
-          rounded-t-[28px]
-          border
-          border-[#E6D7C1]
-          bg-gradient-to-b
-          from-[#FCF8F1]
-          via-[#F6EDDF]
-          to-[#ECE0CF]
-          shadow-[0_8px_18px_rgba(0,0,0,0.12)]
-        "
-      />
+      <svg
+        viewBox="0 0 360 126"
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient
+            id="flapGradient"
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
+            <stop
+              offset="0%"
+              stopColor="#FCF8F2"
+            />
+            <stop
+              offset="100%"
+              stopColor="#ECE0CF"
+            />
+          </linearGradient>
+        </defs>
 
-      {/* Inner Gold Border */}
+        <path
+          d="M0 0 L360 0 L180 126 Z"
+          fill="url(#flapGradient)"
+          stroke="#E4D5BF"
+          strokeWidth="1.4"
+        />
+      </svg>
 
-      <div
-        className="
-          absolute
-          inset-3
-          rounded-t-[22px]
-          border
-          border-[#D8BE87]/35
-        "
-      />
-
-      {/* Premium Paper Texture */}
-
-      <div
-        className="
-          absolute
-          inset-0
-          bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.75),transparent_70%)]
-          opacity-80
-        "
-      />
-
-      {/* Top Highlight */}
+      {/* Top highlight */}
 
       <div
         className="
@@ -85,90 +76,19 @@ export default function EnvelopeFlap({
           top-0
           h-px
           w-full
-          bg-white/80
+          bg-white/70
         "
       />
 
-      {/* Fold Shadow */}
+      {/* Fold shadow */}
 
       <motion.div
         animate={{
-          opacity: opened ? 0.22 : 0.08,
+          opacity: opened ? 0.18 : 0.08,
         }}
         transition={{
-          duration: 0.4,
+          duration: 0.5,
         }}
-        className="
-          absolute
-          bottom-0
-          left-0
-          right-0
-          h-10
-          bg-gradient-to-t
-          from-black/15
-          via-black/5
-          to-transparent
-        "
-      />
-
-      {/* Side Lighting */}
-
-      <div
-        className="
-          absolute
-          left-0
-          top-0
-          h-full
-          w-8
-          bg-gradient-to-r
-          from-white/20
-          to-transparent
-        "
-      />
-
-      <div
-        className="
-          absolute
-          right-0
-          top-0
-          h-full
-          w-8
-          bg-gradient-to-l
-          from-black/[0.03]
-          to-transparent
-        "
-      />
-
-      {/* Decorative Corner Details */}
-
-      <div className="absolute left-5 top-5 h-6 w-6 rounded-tl-xl border-l border-t border-[#D8BE87]/40" />
-
-      <div className="absolute right-5 top-5 h-6 w-6 rounded-tr-xl border-r border-t border-[#D8BE87]/40" />
-
-      {/* Ambient Reflection */}
-
-      <motion.div
-        animate={{
-          opacity: opened
-            ? [0.08, 0.16, 0.08]
-            : [0.04, 0.08, 0.04],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          inset-0
-          bg-white/10
-          blur-[50px]
-        "
-      />
-
-      {/* Inner Shadow */}
-
-      <div
         className="
           absolute
           inset-0
@@ -176,6 +96,28 @@ export default function EnvelopeFlap({
           from-transparent
           via-transparent
           to-black/10
+        "
+      />
+
+      {/* Inner highlight */}
+
+      <motion.div
+        animate={{
+          opacity: opened ? 0.45 : 0.2,
+        }}
+        transition={{
+          duration: 0.5,
+        }}
+        className="
+          absolute
+          left-1/2
+          top-4
+          h-12
+          w-32
+          -translate-x-1/2
+          rounded-full
+          bg-white/20
+          blur-xl
         "
       />
     </motion.div>

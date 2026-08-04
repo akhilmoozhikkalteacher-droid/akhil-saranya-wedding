@@ -1,18 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 
+import InvitationCard from "./InvitationCard";
 import EnvelopeFront from "./EnvelopeFront";
 import EnvelopeFlap from "./EnvelopeFlap";
 import WaxSeal from "./WaxSeal";
-import InvitationCard from "./InvitationCard";
 
 type Phase =
+  | "intro"
   | "idle"
   | "opening"
   | "lifting"
-  | "revealing"
+  | "pause"
+  | "fade"
   | "finished";
 
 interface EnvelopeProps {
@@ -24,51 +29,92 @@ export default function Envelope({
 }: EnvelopeProps) {
 
   const [phase, setPhase] =
-    useState<Phase>("idle");
+    useState<Phase>("intro");
 
   const opened =
     phase === "opening" ||
     phase === "lifting" ||
-    phase === "revealing";
+    phase === "pause" ||
+    phase === "fade";
 
   const showInvitation =
     phase === "lifting" ||
-    phase === "revealing";
+    phase === "pause" ||
+    phase === "fade";
 
   function handleOpen() {
-    if (phase !== "idle") return;
 
-    setTimeout(() => {
-      setPhase("opening");
-    }, 220);
+    if (phase !== "idle")
+      return;
+
+    setPhase("opening");
+
   }
 
+  /* ---------- Intro ---------- */
+
   useEffect(() => {
+
+    const timer = setTimeout(() => {
+      setPhase("idle");
+    }, 900);
+
+    return () => clearTimeout(timer);
+
+  }, []);
+
+  /* ---------- Timeline ---------- */
+
+  useEffect(() => {
+
     let timer: ReturnType<typeof setTimeout>;
 
     switch (phase) {
 
       case "opening":
+
         timer = setTimeout(() => {
           setPhase("lifting");
-        }, 950);
+        }, 850);
+
         break;
 
       case "lifting":
+
         timer = setTimeout(() => {
-          setPhase("revealing");
-        }, 1500);
+          setPhase("pause");
+        }, 1400);
+
         break;
 
-      case "revealing":
+      case "pause":
+
         timer = setTimeout(() => {
-          setPhase("finished");
-          onFinished();
-        }, 1200);
+          setPhase("fade");
+        }, 600);
+
         break;
+
+      case "fade":
+
+        timer = setTimeout(() => {
+
+          setPhase("finished");
+
+          onFinished();
+
+        }, 900);
+
+        break;
+
     }
 
-    return () => clearTimeout(timer);
+    return () => {
+
+      if (timer)
+        clearTimeout(timer);
+
+    };
 
   }, [phase, onFinished]);
 
@@ -82,18 +128,12 @@ export default function Envelope({
 
           initial={{
             opacity: 0,
-            scale: 0.96,
           }}
 
           animate={{
             opacity:
-              phase === "revealing"
+              phase === "fade"
                 ? 0
-                : 1,
-
-            scale:
-              phase === "revealing"
-                ? 1.06
                 : 1,
           }}
 
@@ -102,7 +142,7 @@ export default function Envelope({
           }}
 
           transition={{
-            duration: 1,
+            duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
           }}
 
@@ -110,138 +150,75 @@ export default function Envelope({
             fixed
             inset-0
             z-50
-            flex
-            items-center
-            justify-center
             overflow-hidden
-            bg-[#F9F5EF]
+            bg-[#F8F5EF]
           "
         >
 
-          {/* Ambient Background */}
+          {/* Ambient Light */}
 
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0">
 
-            <motion.div
-
-              animate={{
-                scale: [1, 1.08, 1],
-                opacity: [0.12, 0.18, 0.12],
-              }}
-
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-
+            <div
               className="
                 absolute
                 left-1/2
                 top-1/2
-                h-[700px]
-                w-[700px]
+                h-[520px]
+                w-[520px]
                 -translate-x-1/2
                 -translate-y-1/2
                 rounded-full
-                bg-[#C8A96A]
-                blur-[180px]
+                bg-[#D6B77C]/10
+                blur-[120px]
               "
             />
 
             <div
               className="
                 absolute
-                bottom-0
-                left-0
-                h-[320px]
-                w-[320px]
-                rounded-full
-                bg-[#355D50]/8
-                blur-[150px]
+                inset-0
+                bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.85),transparent_65%)]
               "
             />
 
           </div>
 
-          {/* Floating Particles */}
-
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-
-            {Array.from({ length: 10 }).map((_, index) => (
-
-              <motion.span
-
-                key={index}
-
-                initial={{
-                  opacity: 0.08,
-                  y: 40,
-                }}
-
-                animate={{
-                  opacity: [0.08, 0.3, 0.08],
-                  y: [-20, -140],
-                  x: [0, index % 2 === 0 ? 12 : -12],
-                }}
-
-                transition={{
-                  duration: 8 + index,
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: index * 0.6,
-                }}
-
-                className="
-                  absolute
-                  h-1.5
-                  w-1.5
-                  rounded-full
-                  bg-[#C8A96A]
-                "
-
-                style={{
-                  left: `${10 + index * 8}%`,
-                  bottom: "8%",
-                }}
-
-              />
-
-            ))}
-
-          </div>
-
-          {/* Wedding Title */}
+          {/* Heading */}
 
           <motion.div
 
             initial={{
               opacity: 0,
-              y: -20,
+              y: 20,
             }}
 
             animate={{
-              opacity: 1,
+              opacity:
+                phase === "intro"
+                  ? 0
+                  : 1,
               y: 0,
             }}
 
             transition={{
-              delay: 0.25,
               duration: 0.8,
             }}
 
             className="
               absolute
-              top-16
+              left-1/2
+              top-20
+              -translate-x-1/2
               text-center
             "
           >
 
             <p
               className="
-                uppercase
-                tracking-[0.45em]
                 text-xs
+                uppercase
+                tracking-[0.5em]
                 text-[#C8A96A]
               "
             >
@@ -250,7 +227,7 @@ export default function Envelope({
 
             <h1
               className="
-                mt-6
+                mt-8
                 font-script
                 text-6xl
                 gold-gradient
@@ -259,7 +236,7 @@ export default function Envelope({
               Akhil
             </h1>
 
-            <p className="my-2 text-2xl text-[#C8A96A]">
+            <p className="my-3 text-[#C8A96A]">
               ♥
             </p>
 
@@ -274,199 +251,226 @@ export default function Envelope({
             </h1>
 
           </motion.div>
-                    {/* Envelope */}
 
-          <motion.div
+          {/* Envelope Stage */}
 
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-
-            animate={{
-              opacity: 1,
-              y:
-                phase === "idle"
-                  ? [0, -8, 0]
-                  : 0,
-
-              rotate:
-                phase === "idle"
-                  ? [0, 0.4, 0, -0.4, 0]
-                  : 0,
-            }}
-
-            whileHover={
-              phase === "idle"
-                ? {
-                    y: -5,
-                    scale: 1.02,
-                  }
-                : undefined
-            }
-
-            transition={{
-              opacity: {
-                duration: 0.8,
-              },
-
-              y: {
-                duration: 5,
-                repeat:
-                  phase === "idle"
-                    ? Infinity
-                    : 0,
-                ease: "easeInOut",
-              },
-
-              rotate: {
-                duration: 6,
-                repeat:
-                  phase === "idle"
-                    ? Infinity
-                    : 0,
-                ease: "easeInOut",
-              },
-            }}
-
-            className="relative w-[min(360px,88vw)]"
-
-            style={{
-              aspectRatio: "360 / 250",
-            }}
+          <div
+            className="
+              absolute
+              inset-0
+              flex
+              items-center
+              justify-center
+              pt-20
+            "
           >
 
-            {/* Soft Halo */}
-
             <motion.div
 
               animate={{
-                opacity: [0.12, 0.24, 0.12],
-                scale: [1, 1.08, 1],
+                y:
+                  phase === "idle"
+                    ? [0, -5, 0]
+                    : 0,
               }}
 
               transition={{
                 duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-
-              className="
-                absolute
-                left-1/2
-                top-1/2
-                -z-10
-                h-[420px]
-                w-[420px]
-                -translate-x-1/2
-                -translate-y-1/2
-                rounded-full
-                bg-[#C8A96A]
-                blur-[90px]
-              "
-            />
-
-            {/* Invitation */}
-
-            <InvitationCard
-              visible={showInvitation}
-            />
-
-            {/* Envelope */}
-
-            <EnvelopeFront
-              opened={opened}
-            />
-
-            {/* Flap */}
-
-            <EnvelopeFlap
-              opened={opened}
-            />
-
-            {/* Wax Seal */}
-
-            <motion.div
-
-              animate={{
-                scale:
-                  phase === "idle"
-                    ? [1, 1.03, 1]
-                    : 1,
-              }}
-
-              transition={{
-                duration: 3,
                 repeat:
                   phase === "idle"
                     ? Infinity
                     : 0,
                 ease: "easeInOut",
               }}
+
+              className="relative"
             >
 
-              <WaxSeal
-                onOpen={handleOpen}
+              {/* Shadow */}
+
+              <motion.div
+
+                animate={{
+                  opacity:
+                    phase === "idle"
+                      ? [0.18, 0.24, 0.18]
+                      : 0.18,
+
+                  scale:
+                    phase === "idle"
+                      ? [1, 0.95, 1]
+                      : 1,
+                }}
+
+                transition={{
+                  duration: 5,
+                  repeat:
+                    phase === "idle"
+                      ? Infinity
+                    : 0,
+                }}
+
+                className="
+                  absolute
+                  left-1/2
+                  top-[96%]
+                  h-10
+                  w-[270px]
+                  -translate-x-1/2
+                  rounded-full
+                  bg-black/15
+                  blur-xl
+                "
               />
+
+              <div
+                className="relative w-[360px]"
+                style={{
+                  aspectRatio: "360 / 250",
+                }}
+              >
+
+                                {/* Invitation Card */}
+
+                <InvitationCard
+                  visible={showInvitation}
+                />
+
+                {/* Envelope Body */}
+
+                <EnvelopeFront
+                  opened={opened}
+                />
+
+                {/* Envelope Flap */}
+
+                <EnvelopeFlap
+                  opened={opened}
+                />
+
+                {/* Wax Seal */}
+
+                <WaxSeal
+                  onOpen={handleOpen}
+                />
+
+              </div>
 
             </motion.div>
 
-                        {/* Open Prompt */}
+          </div>
+
+          {/* Open Prompt */}
+
+          <motion.div
+
+            animate={{
+              opacity:
+                phase === "idle"
+                  ? 1
+                  : 0,
+
+              y:
+                phase === "idle"
+                  ? [0, -3, 0]
+                  : 10,
+            }}
+
+            transition={{
+
+              opacity: {
+                duration: 0.35,
+              },
+
+              y: {
+                duration: 2,
+                repeat:
+                  phase === "idle"
+                    ? Infinity
+                    : 0,
+                ease: "easeInOut",
+              },
+
+            }}
+
+            className="
+              absolute
+              bottom-14
+              left-1/2
+              -translate-x-1/2
+              text-center
+              select-none
+            "
+          >
+
+            <p
+              className="
+                text-[11px]
+                uppercase
+                tracking-[0.45em]
+                text-[#355D50]
+              "
+            >
+              Click the Wax Seal
+            </p>
 
             <motion.div
 
               animate={{
                 opacity:
                   phase === "idle"
-                    ? 1
+                    ? [0.35, 1, 0.35]
                     : 0,
 
-                y:
+                scale:
                   phase === "idle"
-                    ? 0
-                    : 8,
+                    ? [1, 1.25, 1]
+                    : 1,
               }}
 
               transition={{
-                duration: 0.35,
+                duration: 1.8,
+                repeat:
+                  phase === "idle"
+                    ? Infinity
+                    : 0,
               }}
 
               className="
-                absolute
-                -bottom-20
-                left-1/2
-                w-full
-                -translate-x-1/2
-                text-center
-                select-none
+                mx-auto
+                mt-3
+                h-2
+                w-2
+                rounded-full
+                bg-[#C8A96A]
               "
-            >
-
-              <p
-                className="
-                  uppercase
-                  tracking-[0.45em]
-                  text-[11px]
-                  text-[#355D50]
-                "
-              >
-                Tap the Wax Seal
-              </p>
-
-              <p
-                className="
-                  mt-2
-                  text-[11px]
-                  tracking-[0.35em]
-                  text-neutral-500
-                "
-              >
-                to Open
-              </p>
-
-            </motion.div>
+            />
 
           </motion.div>
+
+          {/* Final Fade */}
+
+          <motion.div
+
+            animate={{
+              opacity:
+                phase === "fade"
+                  ? 1
+                  : 0,
+            }}
+
+            transition={{
+              duration: 0.9,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              bg-[#F8F5EF]
+            "
+          />
 
         </motion.div>
 
@@ -475,4 +479,5 @@ export default function Envelope({
     </AnimatePresence>
 
   );
+
 }

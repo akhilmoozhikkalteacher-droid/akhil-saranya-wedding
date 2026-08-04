@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Envelope } from "@/components/animations/envelope";
+import Envelope from "@/components/animations/envelope/Envelope";
 import Hero from "@/components/sections/Hero";
 import Welcome from "@/components/sections/Welcome";
 import Countdown from "@/components/sections/Countdown";

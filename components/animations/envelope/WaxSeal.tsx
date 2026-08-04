@@ -21,71 +21,50 @@ export default function WaxSeal({
 
     setTimeout(() => {
       onOpen();
-    }, 420);
+    }, 350);
   }
 
   return (
     <AnimatePresence>
-
       {!broken && (
-
         <motion.button
           type="button"
           onClick={handleClick}
-
           initial={{
-            scale: 1,
+            opacity: 0,
+            scale: 0.9,
           }}
-
           animate={{
+            opacity: 1,
             scale: [1, 1.03, 1],
-            rotate: [0, 0.4, 0, -0.4, 0],
           }}
-
           whileHover={{
-            scale: 1.08,
-            y: -3,
+            scale: 1.05,
           }}
-
           whileTap={{
             scale: 0.88,
-            rotate: -6,
           }}
-
           exit={{
             opacity: 0,
             scale: 0.45,
-            rotate: 18,
-            filter: "blur(3px)",
+            rotate: 15,
+            filter: "blur(2px)",
           }}
-
           transition={{
             scale: {
               duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
             },
-
-            rotate: {
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-
-            opacity: {
-              duration: 0.35,
-            },
-
             default: {
               duration: 0.4,
               ease: [0.22, 1, 0.36, 1],
             },
           }}
-
           className="
             absolute
             left-1/2
-            top-1/2
+            top-[48%]
             z-40
             flex
             h-20
@@ -94,38 +73,25 @@ export default function WaxSeal({
             -translate-y-1/2
             items-center
             justify-center
-            overflow-hidden
             rounded-full
+            overflow-hidden
             cursor-pointer
             select-none
           "
         >
+          {/* Glow */}
 
-          {/* Ambient Glow */}
-
-          <motion.div
-
-            animate={{
-              opacity: [0.12, 0.25, 0.12],
-              scale: [1, 1.08, 1],
-            }}
-
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-
+          <div
             className="
               absolute
               inset-0
               rounded-full
-              bg-[#C8A96A]
+              bg-[#C8A96A]/25
               blur-xl
             "
           />
 
-          {/* Seal */}
+          {/* Wax */}
 
           <div
             className="
@@ -133,12 +99,12 @@ export default function WaxSeal({
               inset-0
               rounded-full
               border
-              border-[#B88E45]
+              border-[#A87433]
               bg-gradient-to-br
-              from-[#E5C686]
-              via-[#C89A56]
-              to-[#9C6A32]
-              shadow-[0_14px_30px_rgba(0,0,0,0.25)]
+              from-[#E3C17A]
+              via-[#C8944B]
+              to-[#98652D]
+              shadow-[0_12px_28px_rgba(0,0,0,0.25)]
             "
           />
 
@@ -147,10 +113,10 @@ export default function WaxSeal({
           <div
             className="
               absolute
-              inset-[6px]
+              inset-[7px]
               rounded-full
               border
-              border-[#F5D89A]/35
+              border-[#F6E4BB]/35
             "
           />
 
@@ -169,45 +135,21 @@ export default function WaxSeal({
             "
           />
 
-          {/* Bottom Shadow */}
+          {/* Emboss */}
 
           <div
             className="
-              absolute
-              bottom-2
-              left-1/2
-              h-3
-              w-10
-              -translate-x-1/2
-              rounded-full
-              bg-black/10
-              blur-md
+              relative
+              z-10
+              flex
+              items-center
+              justify-center
             "
-          />
-
-          {/* Wax Texture */}
-
-          <div
-            className="
-              absolute
-              inset-2
-              rounded-full
-              bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_70%)]
-            "
-          />
-
-          {/* Monogram */}
-
-          <div className="relative z-10">
-
+          >
             <Monogram size="sm" />
-
           </div>
-
         </motion.button>
-
       )}
-
     </AnimatePresence>
   );
 }
