@@ -4,8 +4,8 @@ import { FormEvent, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import {
+  wedding,
   wishes as initialWishes,
-  wishesEndpoint,
 } from "@/data/wedding";
 
 import Button from "@/components/ui/Button";
@@ -38,6 +38,8 @@ focus:ring-[#C8A96A]/10
 export default function WishesWall() {
   const [wishes, setWishes] =
     useState(initialWishes);
+  
+  const wishesEndpoint = wedding.forms.wishes;
 
   const [name, setName] =
     useState("");

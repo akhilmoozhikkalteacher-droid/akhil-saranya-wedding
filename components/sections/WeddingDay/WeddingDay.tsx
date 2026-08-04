@@ -2,6 +2,11 @@
 
 import Section from "@/components/ui/Section";
 
+import PaperTexture from "@/components/ui/PaperTexture";
+import FloatingGlow from "@/components/ui/FloatingGlow";
+import FloralDivider from "@/components/ui/FloralDivider";
+import Reveal from "@/components/ui/Reveal";
+
 import WeddingDayHeader from "./WeddingDayHeader";
 import InvitationIntro from "./InvitationIntro";
 import CoupleIllustration from "./CoupleIllustration";
@@ -16,86 +21,96 @@ export default function WeddingDay() {
       id="wedding-day"
       className="relative overflow-hidden paper"
     >
-      {/* Background Decorations */}
+      {/* Paper Texture */}
 
-      <div className="pointer-events-none absolute inset-0">
+      <PaperTexture />
 
-        {/* Top Glow */}
+      {/* Floating Background Lights */}
 
-        <div
-          className="
-            absolute
-            left-1/2
-            top-0
-            h-[700px]
-            w-[700px]
-            -translate-x-1/2
-            rounded-full
-            bg-[#D6B77C]/8
-            blur-[140px]
-          "
-        />
+      <FloatingGlow
+        className="
+          -top-44
+          left-1/2
+          -translate-x-1/2
+        "
+        size={700}
+      />
 
-        {/* Bottom Glow */}
-
-        <div
-          className="
-            absolute
-            right-0
-            bottom-0
-            h-[520px]
-            w-[520px]
-            rounded-full
-            bg-[#355D50]/5
-            blur-[120px]
-          "
-        />
-
-      </div>
+      <FloatingGlow
+        className="
+          bottom-0
+          right-0
+        "
+        color="#355D50"
+        size={520}
+      />
 
       <div className="relative z-10">
 
-        {/* Chapter Header */}
+        {/* Chapter */}
 
-        <WeddingDayHeader />
+        <Reveal>
+          <WeddingDayHeader />
+        </Reveal>
 
         {/* Invitation */}
 
-        <div className="mt-16">
-          <InvitationIntro />
-        </div>
+        <Reveal delay={0.05}>
+          <div className="mt-16">
+            <InvitationIntro />
+          </div>
+        </Reveal>
 
-        {/* Couple Illustration */}
+        {/* Couple */}
 
-        <div className="-mt-8 flex justify-center">
-          <CoupleIllustration />
-        </div>
+        <Reveal delay={0.1}>
+          <div className="-mt-16 flex justify-center">
+            <CoupleIllustration />
+          </div>
+        </Reveal>
+
+        <FloralDivider />
 
         {/* Ceremony */}
 
-        <div className="mx-auto mt-16 max-w-3xl">
-          <CeremonyPanel />
-        </div>
+        <Reveal delay={0.15}>
+          <div className="mx-auto max-w-3xl">
+            <CeremonyPanel />
+          </div>
+        </Reveal>
+
+        <FloralDivider />
 
         {/* Timeline */}
 
-        <div className="mx-auto mt-24 max-w-4xl">
-          <WeddingTimeline />
-        </div>
+        <Reveal delay={0.2}>
+          <div className="mx-auto mt-6 max-w-4xl">
+            <WeddingTimeline />
+          </div>
+        </Reveal>
+
+        <FloralDivider />
 
         {/* Reception */}
 
-        <div className="mx-auto mt-24 max-w-4xl">
-          <ReceptionPanel />
-        </div>
+        <Reveal delay={0.25}>
+          <div className="mx-auto max-w-4xl">
+            <ReceptionPanel />
+          </div>
+        </Reveal>
 
-        {/* Closing Blessing */}
+        <FloralDivider />
 
-        <div className="mx-auto mt-28 max-w-3xl">
-          <ClosingNote />
-        </div>
+        {/* Closing */}
+
+        <Reveal delay={0.3}>
+          <div className="mx-auto max-w-3xl">
+            <ClosingNote />
+          </div>
+        </Reveal>
 
       </div>
+
     </Section>
   );
 }

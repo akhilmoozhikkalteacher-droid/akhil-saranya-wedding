@@ -3,7 +3,10 @@
 import { motion } from "framer-motion";
 
 import { wedding } from "@/data/wedding";
+
 import Monogram from "@/components/ui/Monogram";
+import LuxuryCard from "@/components/ui/LuxuryCard";
+import GoldDivider from "@/components/ui/GoldDivider";
 
 export default function InvitationIntro() {
   return (
@@ -25,44 +28,9 @@ export default function InvitationIntro() {
       }}
       className="mx-auto mt-24 max-w-3xl"
     >
-      <div
-        className="
-          relative
-          overflow-hidden
-          rounded-[40px]
-          border
-          border-[#E8DFD5]
-          bg-white/70
-          px-10
-          py-16
-          text-center
-          backdrop-blur-lg
-          shadow-[0_24px_60px_rgba(0,0,0,0.08)]
-        "
-      >
-        {/* Soft Glow */}
+      <LuxuryCard className="px-10 py-16">
 
-        <div
-          className="
-            absolute
-            inset-0
-            bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.75),transparent_70%)]
-          "
-        />
-
-        {/* Inner Border */}
-
-        <div
-          className="
-            absolute
-            inset-3
-            rounded-[34px]
-            border
-            border-[#D8BE87]/35
-          "
-        />
-
-        <div className="relative z-10">
+        <div className="text-center">
 
           <Monogram size="md" />
 
@@ -78,7 +46,7 @@ export default function InvitationIntro() {
             {wedding.invitation.opening}
           </p>
 
-          <h3
+          <h2
             className="
               mt-10
               font-script
@@ -88,13 +56,13 @@ export default function InvitationIntro() {
             "
           >
             {wedding.groom.name}
-          </h3>
+          </h2>
 
           <p className="my-4 text-2xl text-[#C8A96A]">
             &
           </p>
 
-          <h3
+          <h2
             className="
               font-script
               text-5xl
@@ -103,20 +71,9 @@ export default function InvitationIntro() {
             "
           >
             {wedding.bride.name}
-          </h3>
+          </h2>
 
-          <div
-            className="
-              mx-auto
-              mt-10
-              h-px
-              w-28
-              bg-gradient-to-r
-              from-transparent
-              via-[#C8A96A]
-              to-transparent
-            "
-          />
+          <GoldDivider className="mt-10" />
 
           <p
             className="
@@ -145,7 +102,8 @@ export default function InvitationIntro() {
           </p>
 
         </div>
-      </div>
+
+      </LuxuryCard>
     </motion.section>
   );
 }

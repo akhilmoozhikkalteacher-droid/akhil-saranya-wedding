@@ -4,153 +4,163 @@ import { motion } from "framer-motion";
 
 import { wedding } from "@/data/wedding";
 
-export default function ReceptionPanel() {
+import LuxuryCard from "@/components/ui/LuxuryCard";
+import GoldDivider from "@/components/ui/GoldDivider";
 
+export default function ReceptionPanel() {
   const reception = wedding.reception;
 
   return (
-
     <motion.section
-
       initial={{
-        opacity:0,
-        y:40,
+        opacity: 0,
+        y: 40,
       }}
-
       whileInView={{
-        opacity:1,
-        y:0,
+        opacity: 1,
+        y: 0,
       }}
-
       viewport={{
-        once:true,
+        once: true,
       }}
-
       transition={{
-        duration:.9,
+        duration: 0.9,
       }}
-
-      className="
-        relative
-        overflow-hidden
-        rounded-[42px]
-        border
-        border-[#D8BE87]/40
-        bg-[#FFFDF8]
-        p-12
-        shadow-[0_30px_80px_rgba(0,0,0,.10)]
-      "
     >
+      <LuxuryCard className="p-12">
 
-      <div
-        className="
-          absolute
-          inset-0
-          bg-[radial-gradient(circle_at_top,rgba(53,93,80,.10),transparent_70%)]
-        "
-      />
+        <div className="text-center">
 
-      <div
-        className="
-          absolute
-          inset-3
-          rounded-[34px]
-          border
-          border-[#D8BE87]/30
-        "
-      />
+          {/* Icon */}
 
-      <div className="relative z-10 text-center">
+          <div className="text-5xl">
+            🎉
+          </div>
 
-        <div className="text-5xl">
-          🎉
-        </div>
+          {/* Heading */}
 
-        <p className="mt-8 text-xs uppercase tracking-[0.45em] text-[#C8A96A]">
-          {reception.subtitle}
-        </p>
+          <p
+            className="
+              mt-8
+              text-xs
+              uppercase
+              tracking-[0.45em]
+              text-[#C8A96A]
+            "
+          >
+            {reception.subtitle}
+          </p>
 
-        <h2 className="mt-6 font-heading text-5xl">
-          {reception.title}
-        </h2>
+          <h2
+            className="
+              mt-6
+              font-heading
+              text-5xl
+            "
+          >
+            {reception.title}
+          </h2>
 
-        <p className="mx-auto mt-8 max-w-2xl leading-8 text-neutral-600">
-          {reception.invitation}
-        </p>
+          <p
+            className="
+              mx-auto
+              mt-8
+              max-w-2xl
+              leading-8
+              text-neutral-600
+            "
+          >
+            {reception.invitation}
+          </p>
 
-        <div className="mx-auto mt-10 h-px w-28 bg-gradient-to-r from-transparent via-[#C8A96A] to-transparent"/>
+          <GoldDivider className="mt-10" />
 
-        <div className="mt-10 space-y-8">
+          {/* Reception Details */}
 
-          <div>
+          <div className="mt-10 space-y-8">
 
-            <p className="text-xs uppercase tracking-[0.35em] text-neutral-400">
-              Time
-            </p>
+            <div>
 
-            <h3 className="mt-3 font-heading text-3xl text-[#355D50]">
-              {reception.time}
-            </h3>
+              <p className="text-xs uppercase tracking-[0.35em] text-neutral-400">
+                Time
+              </p>
+
+              <h3 className="mt-3 font-heading text-3xl text-[#355D50]">
+                {reception.time}
+              </h3>
+
+            </div>
+
+            <div>
+
+              <p className="text-xs uppercase tracking-[0.35em] text-neutral-400">
+                Venue
+              </p>
+
+              <h3 className="mt-3 font-heading text-4xl">
+                {reception.venue}
+              </h3>
+
+              <p className="mt-3 text-neutral-600">
+                {reception.place}
+              </p>
+
+            </div>
 
           </div>
 
-          <div>
+          {/* Location Button */}
 
-            <p className="text-xs uppercase tracking-[0.35em] text-neutral-400">
-              Venue
-            </p>
+          <motion.a
+            whileHover={{
+              scale: 1.04,
+              y: -2,
+            }}
+            whileTap={{
+              scale: 0.98,
+            }}
+            href={reception.map}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              mt-12
+              inline-flex
+              items-center
+              justify-center
+              rounded-full
+              bg-[#355D50]
+              px-10
+              py-5
+              text-base
+              font-semibold
+              text-white
+              shadow-lg
+              transition-all
+              duration-300
+              hover:bg-[#2E5146]
+            "
+          >
+            📍 Open Reception Location
+          </motion.a>
 
-            <h3 className="mt-3 font-heading text-4xl">
-              {reception.venue}
-            </h3>
+          {/* Closing Message */}
 
-            <p className="mt-3 text-neutral-600">
-              {reception.place}
-            </p>
-
-          </div>
+          <p
+            className="
+              mx-auto
+              mt-10
+              max-w-xl
+              italic
+              leading-8
+              text-neutral-500
+            "
+          >
+            {reception.closing}
+          </p>
 
         </div>
 
-        <motion.a
-
-          whileHover={{
-            scale:1.05,
-          }}
-
-          whileTap={{
-            scale:.98,
-          }}
-
-          href={reception.map}
-          target="_blank"
-          rel="noopener noreferrer"
-
-          className="
-            mt-12
-            inline-flex
-            items-center
-            rounded-full
-            bg-[#355D50]
-            px-10
-            py-5
-            font-semibold
-            text-white
-            shadow-lg
-            hover:bg-[#2E5146]
-          "
-        >
-          📍 Open Reception Location
-        </motion.a>
-
-        <p className="mx-auto mt-10 max-w-xl italic leading-8 text-neutral-500">
-          {reception.closing}
-        </p>
-
-      </div>
-
+      </LuxuryCard>
     </motion.section>
-
   );
-
 }

@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 
 import { wedding } from "@/data/wedding";
 
+import LuxuryCard from "@/components/ui/LuxuryCard";
+import GoldDivider from "@/components/ui/GoldDivider";
+
 export default function ClosingNote() {
   return (
     <motion.section
@@ -21,48 +24,21 @@ export default function ClosingNote() {
       transition={{
         duration: 0.9,
       }}
-      className="mx-auto mt-32 max-w-3xl text-center"
+      className="mx-auto max-w-3xl"
     >
-      <div
-        className="
-          relative
-          overflow-hidden
-          rounded-[42px]
-          border
-          border-[#D8BE87]/35
-          bg-[#FFFDF9]
-          px-12
-          py-20
-          shadow-[0_25px_70px_rgba(0,0,0,0.08)]
-        "
+      <LuxuryCard
+        hover={false}
+        className="px-12 py-20"
       >
-        {/* Glow */}
+        <div className="text-center">
 
-        <div
-          className="
-            absolute
-            inset-0
-            bg-[radial-gradient(circle_at_top,rgba(200,169,106,0.12),transparent_70%)]
-          "
-        />
-
-        {/* Inner Border */}
-
-        <div
-          className="
-            absolute
-            inset-3
-            rounded-[34px]
-            border
-            border-[#D8BE87]/30
-          "
-        />
-
-        <div className="relative z-10">
+          {/* Icon */}
 
           <div className="text-5xl">
             🤍
           </div>
+
+          {/* Heading */}
 
           <p
             className="
@@ -88,6 +64,10 @@ export default function ClosingNote() {
             Thank You
           </h2>
 
+          <GoldDivider className="mt-10" />
+
+          {/* Message */}
+
           <p
             className="
               mx-auto
@@ -101,18 +81,12 @@ export default function ClosingNote() {
             {wedding.reception.closing}
           </p>
 
-          <div
-            className="
-              mx-auto
-              mt-12
-              h-px
-              w-28
-              bg-gradient-to-r
-              from-transparent
-              via-[#C8A96A]
-              to-transparent
-            "
+          <GoldDivider
+            className="mt-12"
+            width="w-24"
           />
+
+          {/* Couple Names */}
 
           <h3
             className="
@@ -139,8 +113,25 @@ export default function ClosingNote() {
             {wedding.bride.name}
           </h3>
 
+          {/* Final Blessing */}
+
+          <p
+            className="
+              mx-auto
+              mt-10
+              max-w-xl
+              italic
+              leading-8
+              text-neutral-500
+            "
+          >
+            May your love, prayers, and blessings
+            remain with us as we begin this beautiful
+            new chapter together.
+          </p>
+
         </div>
-      </div>
+      </LuxuryCard>
     </motion.section>
   );
 }
