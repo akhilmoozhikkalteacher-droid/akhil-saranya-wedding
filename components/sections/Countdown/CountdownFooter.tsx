@@ -1,25 +1,31 @@
+"use client";
+
 import { wedding } from "@/data/wedding";
 
 export default function CountdownFooter() {
-  return (
-    <div className="mt-20 text-center">
+  const ceremony = wedding.ceremony;
 
-      <div className="mx-auto mb-8 h-px w-32 bg-[#C8A96A]/30" />
+  return (
+    <div className="mt-16 text-center">
 
       <p className="uppercase tracking-[0.35em] text-neutral-500">
-        {wedding.day}
+        {ceremony.day}
       </p>
 
       <h3 className="mt-4 font-heading text-4xl">
-        {wedding.date}
+        {ceremony.date}
       </h3>
 
-      <p className="mt-6 text-[#355D50] text-lg">
-        {wedding.time}
+      <p className="mt-6 text-xl text-[#355D50]">
+        {ceremony.time}
+      </p>
+
+      <p className="mt-6 text-neutral-600">
+        {ceremony.venue}
       </p>
 
       <p className="mt-2 text-neutral-500">
-        {wedding.venue}, {wedding.place}
+        {ceremony.place}
       </p>
 
     </div>

@@ -12,6 +12,8 @@ interface InvitationCardProps {
 export default function InvitationCard({
   visible,
 }: InvitationCardProps) {
+  const ceremony = wedding.ceremony;
+
   return (
     <motion.div
       initial={{
@@ -41,7 +43,7 @@ export default function InvitationCard({
         -translate-x-1/2
       "
     >
-      {/* Card Shadow */}
+      {/* Shadow */}
 
       <motion.div
         animate={{
@@ -60,7 +62,7 @@ export default function InvitationCard({
         "
       />
 
-      {/* Paper */}
+      {/* Card */}
 
       <div
         className="
@@ -75,7 +77,7 @@ export default function InvitationCard({
           shadow-[0_22px_55px_rgba(0,0,0,0.15)]
         "
       >
-        {/* Soft Paper Glow */}
+        {/* Paper Glow */}
 
         <div
           className="
@@ -85,7 +87,7 @@ export default function InvitationCard({
           "
         />
 
-        {/* Inner Gold Border */}
+        {/* Inner Border */}
 
         <div
           className="
@@ -132,7 +134,7 @@ export default function InvitationCard({
               text-neutral-500
             "
           >
-            Together with our families
+            {wedding.invitation.opening}
           </p>
 
           <h2
@@ -194,7 +196,7 @@ export default function InvitationCard({
               text-[#355D50]
             "
           >
-            {wedding.date}
+            {ceremony.date}
           </p>
 
           <p
@@ -206,7 +208,7 @@ export default function InvitationCard({
               text-neutral-500
             "
           >
-            {wedding.day}
+            {ceremony.day}
           </p>
 
           <div
@@ -230,7 +232,7 @@ export default function InvitationCard({
               text-neutral-500
             "
           >
-            Wedding Ceremony
+            {ceremony.title}
           </p>
 
           <p
@@ -241,7 +243,7 @@ export default function InvitationCard({
               text-[#355D50]
             "
           >
-            {wedding.time}
+            {ceremony.time}
           </p>
 
           <p
@@ -253,24 +255,45 @@ export default function InvitationCard({
               text-neutral-500
             "
           >
-            {wedding.venue}
+            {ceremony.venue}
           </p>
 
           <p
             className="
-                mt-2
-                text-sm
-                tracking-[0.08em]
-                text-neutral-500
+              mt-2
+              text-sm
+              tracking-[0.08em]
+              text-neutral-500
             "
-            >
-            {wedding.place}
-            </p>
+          >
+            {ceremony.place}
+          </p>
+
+          <div
+            className="
+              mt-10
+              h-px
+              w-20
+              bg-gradient-to-r
+              from-transparent
+              via-[#C8A96A]
+              to-transparent
+            "
+          />
+
+          <p
+            className="
+              mt-8
+              text-sm
+              leading-7
+              text-neutral-600
+            "
+          >
+            {wedding.invitation.closing}
+          </p>
 
         </div>
-
       </div>
-
     </motion.div>
   );
 }

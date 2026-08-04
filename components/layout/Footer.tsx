@@ -11,7 +11,7 @@ export default function Footer() {
       </p>
 
       <p className="mt-4 text-xs uppercase tracking-[0.35em] text-neutral-500">
-        {wedding.day}, {wedding.date}
+        {wedding.ceremony.day}, {wedding.ceremony.date}
       </p>
 
       <p className="mt-10 text-xs text-neutral-400">

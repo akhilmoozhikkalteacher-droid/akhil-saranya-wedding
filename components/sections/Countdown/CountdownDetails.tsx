@@ -6,6 +6,8 @@ import { wedding } from "@/data/wedding";
 import Paper from "@/components/animations/envelope/Paper";
 
 export default function CountdownDetails() {
+  const ceremony = wedding.ceremony;
+
   return (
     <motion.div
       initial={{
@@ -46,7 +48,7 @@ export default function CountdownDetails() {
               text-[#C8A96A]
             "
           >
-            Wedding Ceremony
+            {ceremony.title}
           </p>
 
           <h3
@@ -56,7 +58,7 @@ export default function CountdownDetails() {
               text-4xl
             "
           >
-            {wedding.date}
+            {ceremony.date}
           </h3>
 
           <p
@@ -67,7 +69,7 @@ export default function CountdownDetails() {
               text-neutral-500
             "
           >
-            {wedding.day}
+            {ceremony.day}
           </p>
 
           <div
@@ -91,7 +93,7 @@ export default function CountdownDetails() {
               text-[#355D50]
             "
           >
-            {wedding.time}
+            {ceremony.time}
           </p>
 
           <p
@@ -102,7 +104,7 @@ export default function CountdownDetails() {
               text-neutral-700
             "
           >
-            {wedding.venue}
+            {ceremony.venue}
           </p>
 
           <p
@@ -111,7 +113,7 @@ export default function CountdownDetails() {
               text-neutral-500
             "
           >
-            {wedding.place}
+            {ceremony.place}
           </p>
 
         </div>

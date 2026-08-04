@@ -6,11 +6,8 @@ import Envelope from "@/components/animations/envelope/Envelope";
 import Hero from "@/components/sections/Hero";
 import Welcome from "@/components/sections/Welcome";
 import Countdown from "@/components/sections/Countdown";
-import Invitation from "@/components/sections/Invitation";
+import WeddingDay from "@/components/sections/WeddingDay";
 import Story from "@/components/sections/Story";
-import Celebration from "@/components/sections/Celebration";
-import Reception from "@/components/sections/Reception";
-import Venue from "@/components/sections/Venue";
 import Gallery from "@/components/sections/Gallery";
 import RSVP from "@/components/sections/RSVP";
 import Wishes from "@/components/sections/Wishes";
@@ -38,19 +35,11 @@ export default function Home() {
         {/* Countdown */}
         <Countdown />
 
-        {/* Invitation */}
-        <Invitation />
+        {/* Wedding Day */}
+        <WeddingDay />
 
         {/* Our Story */}
         <Story />
-
-        {/* Wedding Celebration */}
-        <Celebration />
-
-        <Reception />
-
-        {/* Venue */}
-        <Venue />
 
         {/* Gallery */}
         <Gallery />

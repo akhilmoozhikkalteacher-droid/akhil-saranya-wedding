@@ -1,4 +1,8 @@
 export const wedding = {
+  /* ----------------------------------------------------------
+   * Couple
+   * ---------------------------------------------------------- */
+
   groom: {
     name: "Akhil",
     parents: "Mr. Aramughan & Mrs. Vinodhini",
@@ -9,41 +13,71 @@ export const wedding = {
     parents: "Mr. Devadasan & Mrs. Shylaja",
   },
 
-  /* Wedding Ceremony */
+  /* ----------------------------------------------------------
+   * Invitation
+   * ---------------------------------------------------------- */
 
-  date: "21 August 2026",
+  invitation: {
+    opening: "Together with our beloved families",
 
-  day: "Friday",
+    message:
+      "We joyfully invite you to celebrate the beginning of our forever and request the pleasure of your company on our wedding day.",
 
-  time: "10:00 AM – 1:00 PM",
+    closing:
+      "Your love, prayers and blessings will make our celebration truly unforgettable.",
+  },
 
-  venue: "Coir Retreat",
+  /* ----------------------------------------------------------
+   * Wedding Ceremony
+   * ---------------------------------------------------------- */
 
-  place: "Tirur",
+  ceremony: {
+    title: "Wedding Ceremony",
 
-  map: "https://www.google.com/maps/place/Coir+Retreat/data=!4m2!3m1!1s0x0:0x858a28ba78aaea74?sa=X&ved=1t:2428&ictx=111",
+    date: "21 August 2026",
 
-  mapEmbedQuery: "Coir Retreat, Tirur",
+    day: "Friday",
 
-  arrival: [
-    {
-      label: "Parking",
-      detail: "On-site parking is available at the venue.",
-    },
-    {
-      label: "Dress Code",
-      detail: "Traditional / Festive Attire",
-    },
-    {
-      label: "Getting There",
-      detail:
-        "Nearest Railway Station: Tirur • Nearest Airport: Calicut International (CCJ)",
-    },
-  ],
+    time: "10:00 AM – 1:00 PM",
 
-  /* Reception */
+    venue: "Coir Retreat",
+
+    place: "Tirur",
+
+    map:
+      "https://www.google.com/maps/place/Coir+Retreat/data=!4m2!3m1!1s0x0:0x858a28ba78aaea74?sa=X&ved=1t:2428&ictx=111",
+
+    mapEmbedQuery: "Coir Retreat, Tirur",
+
+    note:
+      "Our wedding ceremony will take place earlier in the day with our families and invited guests.",
+
+    arrival: [
+      {
+        label: "Parking",
+        detail: "On-site parking is available.",
+      },
+      {
+        label: "Dress Code",
+        detail: "Traditional / Festive Attire",
+      },
+      {
+        label: "Travel",
+        detail:
+          "Nearest Railway Station: Tirur • Nearest Airport: Calicut International (CCJ)",
+      },
+    ],
+  },
+
+  /* ----------------------------------------------------------
+   * Reception
+   * ---------------------------------------------------------- */
 
   reception: {
+    title: "Wedding Reception",
+
+    subtitle: "Main Celebration",
+
     date: "21 August 2026",
 
     day: "Friday",
@@ -52,26 +86,28 @@ export const wedding = {
 
     venue: "Our Home",
 
-    subtitle: "Reception Venue",
-
     place: "Reception Location",
 
     map: "https://maps.app.goo.gl/PNqC1sAPk9eMRyJEA",
 
     invitation:
-      "We would be delighted to celebrate this joyous occasion with you at our reception.",
+      "We warmly invite you to celebrate this joyous afternoon with us. Your presence will make our celebration even more special.",
 
     closing:
-      "We look forward to celebrating this beautiful afternoon with you and creating memories to cherish forever.",
+      "We look forward to celebrating this beautiful day together and creating memories to cherish forever.",
   },
 
-  /* Countdown */
+  /* ----------------------------------------------------------
+   * Countdown
+   * ---------------------------------------------------------- */
 
   countdown: {
     target: "2026-08-21T10:00:00",
   },
 
-  /* Website */
+  /* ----------------------------------------------------------
+   * Website
+   * ---------------------------------------------------------- */
 
   website: {
     title: "Akhil & Saranya",
@@ -81,6 +117,10 @@ export const wedding = {
     hashtag: "#AkhilWedsSaranya",
   },
 };
+
+/* ==========================================================
+ * Story
+ * ========================================================== */
 
 export const story = [
   {
@@ -124,22 +164,28 @@ export const story = [
   },
 ];
 
+/* ==========================================================
+ * Gallery
+ * ========================================================== */
+
 export const gallery = [
   {
     src: "/images/gallery/DSC02127.jpeg",
     alt: "Akhil and Saranya",
   },
-
   {
     src: "/images/gallery/IMG_7621.jpeg",
     alt: "Akhil and Saranya",
   },
-
   {
     src: "/images/gallery/IMG_7630.jpeg",
     alt: "Akhil and Saranya",
   },
 ];
+
+/* ==========================================================
+ * Wishes
+ * ========================================================== */
 
 export const wishes = [
   {
@@ -148,6 +194,10 @@ export const wishes = [
       "Wishing you both a lifetime filled with love, happiness and beautiful memories together.",
   },
 ];
+
+/* ==========================================================
+ * API Endpoints
+ * ========================================================== */
 
 export const rsvpEndpoint = "";
 
