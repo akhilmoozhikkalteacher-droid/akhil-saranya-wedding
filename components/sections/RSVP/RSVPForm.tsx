@@ -231,10 +231,9 @@ export default function RSVPForm() {
             text-neutral-500
           "
         >
-          Thank you for taking a moment to respond.
-          Your presence and blessings mean so much to us,
-          and we look forward to celebrating this beautiful
-          day together.
+          Thank you for letting us know.
+          Your warm wishes and blessings mean so much to us,
+          and we hope to celebrate with you on another occasion.
         </p>
 
         <GoldDivider
@@ -497,14 +496,14 @@ export default function RSVPForm() {
             text-neutral-500
           "
         >
-          Message
+          Special Note (Optional)
         </label>
 
         <textarea
           id="message"
           name="message"
           rows={5}
-          placeholder="Leave your wishes for us..."
+          placeholder="Share any special requests or additional information..."
           className={inputClass}
         />
 
