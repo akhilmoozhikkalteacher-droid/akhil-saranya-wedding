@@ -146,46 +146,56 @@ export const wedding = {
 /* ==========================================================
  * Story
  * ========================================================== */
+type StoryItem = {
+  date: string;
+  title: string;
+  text: string;
+  layout: "text" | "photo";
+  image?: string;
+};
 
-export const story = [
+export const story: StoryItem[] = [
   {
     date: "23 November 2025",
     title: "First Meeting",
+    layout: "text",
     text:
-      "Every beautiful story begins with a simple hello. On this day, our paths crossed, and an ordinary moment became the beginning of an extraordinary journey.",
-    image: null,
+      "Every beautiful story begins with a simple hello. On this day, our paths crossed, and an ordinary moment quietly became the beginning of an extraordinary journey.",
   },
 
   {
     date: "12 December 2025",
     title: "The Proposal",
+    layout: "text",
     text:
-      "One heartfelt question. One unforgettable answer. A promise was made to walk through life together, hand in hand.",
-    image: null,
+      "One heartfelt question. One unforgettable answer. A promise was made to walk through life together, hand in hand. That unforgettable moment became the beginning of our forever.",
   },
 
   {
     date: "14 February 2026",
     title: "The Engagement",
+    layout: "photo",
+    image: "/images/story/engagement.jpg",
     text:
-      "Surrounded by the love and blessings of our families, we celebrated the beginning of our forever.",
-    image: "/images/story/engagement-ring.jpg",
+      "Surrounded by the love and blessings of our families, we celebrated the beginning of a new chapter. It was a day filled with joy, laughter and countless unforgettable memories.",
   },
 
   {
     date: "Our Journey",
     title: "Everyday Moments",
-    text:
-      "Between life's milestones are countless little moments filled with laughter, conversations, adventures, and memories that brought us even closer together.",
+    layout: "photo",
     image: "/images/story/everyday.jpg",
+    text:
+      "Between life's biggest milestones are the countless little moments that truly define a relationship—shared smiles, endless conversations, quiet evenings, adventures together and memories that brought us closer every single day.",
   },
 
   {
     date: "21 August 2026",
     title: "Forever Begins",
+    layout: "photo",
+    image: "/images/story/coming-soon.jpg",
     text:
-      "And now, with grateful hearts, we invite you to celebrate the beginning of our forever.",
-    image: null,
+      "Our wedding day will mark the beginning of our greatest adventure. This chapter will soon be filled with one of our most treasured memories.",
   },
 ];
 

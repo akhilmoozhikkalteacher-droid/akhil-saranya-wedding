@@ -1,12 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 import Section from "@/components/ui/Section";
+
+import PaperTexture from "@/components/ui/PaperTexture";
+import FloatingGlow from "@/components/ui/FloatingGlow";
+import Reveal from "@/components/ui/Reveal";
+import Floating from "@/components/ui/Floating";
+
 import { Couple } from "@/components/characters";
 
 import StoryHeading from "./StoryHeading";
 import StoryTimeline from "./StoryTimeline";
+import StoryQuote from "./StoryQuote";
 
 export default function Story() {
   return (
@@ -14,113 +19,93 @@ export default function Story() {
       id="story"
       className="relative overflow-hidden paper"
     >
-      {/* Background Glow */}
+      {/* Background */}
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <PaperTexture />
 
-        <div
-          className="
-            absolute
-            right-0
-            top-20
-            h-[460px]
-            w-[460px]
-            rounded-full
-            bg-[#355D50]/5
-            blur-[130px]
-          "
-        />
+      <FloatingGlow
+        className="
+          -top-40
+          left-1/2
+          -translate-x-1/2
+        "
+        size={680}
+      />
 
-        <div
-          className="
-            absolute
-            left-10
-            bottom-10
-            h-[240px]
-            w-[240px]
-            rounded-full
-            bg-[#C8A96A]/8
-            blur-[100px]
-          "
-        />
+      <FloatingGlow
+        className="
+          bottom-0
+          right-0
+        "
+        color="#355D50"
+        size={360}
+      />
 
-      </div>
+      <FloatingGlow
+        className="
+          top-1/2
+          left-0
+        "
+        color="#C8A96A"
+        size={260}
+      />
 
       <div className="relative z-10">
 
-        {/* Couple */}
+        {/* Couple Illustration */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.9,
-          }}
-          className="mb-14 flex justify-center"
-        >
-          <motion.div
-            animate={{
-              y: [0, -8, 0],
-              rotate: [0, 0.5, 0, -0.5, 0],
-            }}
-            transition={{
-              y: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              rotate: {
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-            }}
-          >
-            <Couple
-              pose="story"
-              size="lg"
-              priority={false}
-            />
-          </motion.div>
-        </motion.div>
+        <Reveal>
 
-        {/* Heading */}
+          <div className="mb-20 flex justify-center">
 
-        <StoryHeading />
+            <Floating
+              amplitude={8}
+              duration={6}
+            >
+              <Couple
+                pose="story"
+                size="hero"
+              />
+            </Floating>
 
-        {/* Timeline */}
+          </div>
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.2,
-            duration: 0.8,
-          }}
-          className="mt-20"
-        >
-          <StoryTimeline />
-        </motion.div>
+        </Reveal>
+
+        {/* Chapter Heading */}
+
+        <Reveal delay={0.08}>
+
+          <StoryHeading />
+
+        </Reveal>
+
+        {/* Story Book */}
+
+        <Reveal delay={0.16}>
+
+          <div className="mx-auto mt-24 max-w-5xl">
+
+            <StoryTimeline />
+
+          </div>
+
+        </Reveal>
+
+        {/* Closing */}
+
+        <Reveal delay={0.24}>
+
+          <div className="mx-auto mt-28 max-w-4xl">
+
+            <StoryQuote />
+
+          </div>
+
+        </Reveal>
 
       </div>
+
     </Section>
   );
 }
