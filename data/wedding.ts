@@ -140,8 +140,7 @@ export const wedding = {
   forms: {
     rsvp: "https://formspree.io/f/myeggklv",
 
-    wishes: "https://formspree.io/f/xoeaajyg",
-  },
+    },
 };
 
 /* ==========================================================
