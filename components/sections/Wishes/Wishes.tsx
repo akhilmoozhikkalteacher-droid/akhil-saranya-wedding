@@ -1,12 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 import Section from "@/components/ui/Section";
-import { Couple } from "@/components/characters";
+
+import PaperTexture from "@/components/ui/PaperTexture";
+import FloatingGlow from "@/components/ui/FloatingGlow";
+import FloralDivider from "@/components/ui/FloralDivider";
+import Reveal from "@/components/ui/Reveal";
+import Floating from "@/components/ui/Floating";
+
+import { Saranya } from "@/components/characters";
 
 import WishesHeading from "./WishesHeading";
+import WishesIntro from "./WishesIntro";
+import WishesForm from "./WishesForm";
 import WishesWall from "./WishesWall";
+import WishesQuote from "./WishesQuote";
 
 export default function Wishes() {
   return (
@@ -14,131 +22,104 @@ export default function Wishes() {
       id="wishes"
       className="relative overflow-hidden paper"
     >
-      {/* Background Glow */}
+      {/* Background */}
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <PaperTexture />
 
-        <div
-          className="
-            absolute
-            left-1/2
-            top-10
-            h-[540px]
-            w-[540px]
-            -translate-x-1/2
-            rounded-full
-            bg-[#C8A96A]/10
-            blur-[140px]
-          "
-        />
+      <FloatingGlow
+        className="
+          -top-36
+          left-1/2
+          -translate-x-1/2
+        "
+        size={640}
+      />
 
-        <div
-          className="
-            absolute
-            right-0
-            bottom-0
-            h-[260px]
-            w-[260px]
-            rounded-full
-            bg-[#355D50]/6
-            blur-[110px]
-          "
-        />
-
-      </div>
+      <FloatingGlow
+        className="
+          bottom-0
+          right-0
+        "
+        color="#355D50"
+        size={340}
+      />
 
       <div className="relative z-10">
 
         {/* Character */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.9,
-          }}
-          className="mb-14 flex justify-center"
-        >
-          <motion.div
-            animate={{
-              y: [0, -8, 0],
-              rotate: [0, 0.5, 0, -0.5, 0],
-            }}
-            transition={{
-              y: {
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              rotate: {
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-            }}
-          >
-            <Couple
-              pose="thankyou"
-              size="lg"
-            />
-          </motion.div>
-        </motion.div>
+        <Reveal>
+
+          <div className="mb-14 flex justify-center">
+
+            <Floating
+              amplitude={8}
+              duration={6}
+            >
+              <Saranya
+                pose="thankyou"
+                size="lg"
+              />
+            </Floating>
+
+          </div>
+
+        </Reveal>
 
         {/* Heading */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.15,
-            duration: 0.8,
-          }}
-        >
+        <Reveal delay={0.08}>
           <WishesHeading />
-        </motion.div>
+        </Reveal>
 
-        {/* Wishes */}
+        {/* Introduction */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-          }}
-          className="mt-20"
-        >
-          <WishesWall />
-        </motion.div>
+        <Reveal delay={0.16}>
+
+          <div className="mt-16">
+            <WishesIntro />
+          </div>
+
+        </Reveal>
+
+        <FloralDivider />
+
+        {/* Form */}
+
+        <Reveal delay={0.24}>
+
+          <div className="mx-auto max-w-3xl">
+            <WishesForm />
+          </div>
+
+        </Reveal>
+
+        <FloralDivider />
+
+        {/* Guestbook */}
+
+        <Reveal delay={0.32}>
+
+          <div className="mx-auto mt-6 max-w-5xl">
+            <WishesWall />
+          </div>
+
+        </Reveal>
+
+        <FloralDivider />
+
+        {/* Closing */}
+
+        <Reveal delay={0.40}>
+
+          <div className="mx-auto max-w-3xl">
+            <WishesQuote />
+          </div>
+
+        </Reveal>
 
       </div>
+
     </Section>
   );
 }

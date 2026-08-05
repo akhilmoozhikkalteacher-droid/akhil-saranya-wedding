@@ -7,14 +7,18 @@ import GoldDivider from "./GoldDivider";
 interface Props {
   chapter: string;
   title: string;
-  description: string;
+  description?: string;
+  subtitle?: string;
 }
 
 export default function ChapterHeading({
   chapter,
   title,
   description,
+  subtitle,
 }: Props) {
+  const text = subtitle ?? description;
+
   return (
     <motion.div
       initial={{
@@ -55,20 +59,24 @@ export default function ChapterHeading({
         {title}
       </h2>
 
-      <GoldDivider className="mt-8" />
+      {text && (
+        <>
+          <GoldDivider className="mt-8" />
 
-      <p
-        className="
-          mx-auto
-          mt-8
-          max-w-2xl
-          text-lg
-          leading-9
-          text-neutral-600
-        "
-      >
-        {description}
-      </p>
+          <p
+            className="
+              mx-auto
+              mt-8
+              max-w-2xl
+              text-lg
+              leading-9
+              text-neutral-600
+            "
+          >
+            {text}
+          </p>
+        </>
+      )}
     </motion.div>
   );
 }
