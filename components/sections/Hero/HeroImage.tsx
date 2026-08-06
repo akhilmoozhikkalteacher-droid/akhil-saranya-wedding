@@ -9,15 +9,24 @@ export default function HeroImage() {
       className="absolute inset-0"
       initial={{
         opacity: 0,
-        scale: 1.05,
+        scale: 1.06,
       }}
       animate={{
         opacity: 1,
-        scale: 1,
+        scale: [1.02, 1.04, 1.02],
       }}
       transition={{
-        duration: 1.6,
-        ease: [0.22, 1, 0.36, 1], // Smooth luxury easing
+        opacity: {
+          duration: 1.6,
+          ease: "easeOut",
+        },
+
+        scale: {
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "mirror",
+          ease: "easeInOut",
+        },
       }}
     >
       <Image
@@ -25,9 +34,13 @@ export default function HeroImage() {
         alt="Akhil and Saranya"
         fill
         priority
-        quality={90}
+        quality={95}
         sizes="100vw"
-        className="object-cover object-center select-none"
+        className="
+          select-none
+          object-cover
+          object-center
+        "
       />
     </motion.div>
   );

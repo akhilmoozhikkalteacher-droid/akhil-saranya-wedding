@@ -5,9 +5,6 @@ import Section from "@/components/ui/Section";
 import PaperTexture from "@/components/ui/PaperTexture";
 import FloatingGlow from "@/components/ui/FloatingGlow";
 import Reveal from "@/components/ui/Reveal";
-import Floating from "@/components/ui/Floating";
-
-import { Couple } from "@/components/characters";
 
 import StoryHeading from "./StoryHeading";
 import StoryTimeline from "./StoryTimeline";
@@ -52,32 +49,10 @@ export default function Story() {
 
       <div className="relative z-10">
 
-        {/* Couple Illustration */}
-
-        <Reveal>
-
-          <div className="mb-20 flex justify-center">
-
-            <Floating
-              amplitude={8}
-              duration={6}
-            >
-              <Couple
-                pose="story"
-                size="hero"
-              />
-            </Floating>
-
-          </div>
-
-        </Reveal>
-
         {/* Chapter Heading */}
 
         <Reveal delay={0.08}>
-
           <StoryHeading />
-
         </Reveal>
 
         {/* Story Book */}
@@ -92,7 +67,7 @@ export default function Story() {
 
         </Reveal>
 
-        {/* Closing */}
+        {/* Closing Quote */}
 
         <Reveal delay={0.24}>
 

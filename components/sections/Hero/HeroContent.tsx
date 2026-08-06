@@ -2,33 +2,99 @@ import Monogram from "@/components/ui/Monogram";
 
 export default function HeroContent() {
   return (
-    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white px-6">
-
+    <div
+      className="
+        absolute
+        inset-0
+        z-20
+        flex
+        flex-col
+        items-center
+        justify-center
+        px-6
+        text-center
+        text-white
+      "
+    >
       <Monogram size="sm" />
 
-      <p className="mt-10 text-xs md:text-sm uppercase tracking-[0.45em] opacity-90">
-        Together with our families
+      <p
+        className="
+          mt-8
+          text-[11px]
+          uppercase
+          tracking-[0.55em]
+          text-white/90
+        "
+      >
+        Together with our Families
       </p>
 
-      <h1 className="font-script gold-gradient text-7xl sm:text-8xl md:text-9rem mt-10">
-        Akhil
+      <h1
+        className="
+          mt-8
+          font-script
+          text-6xl
+          sm:text-7xl
+          md:text-[7rem]
+          lg:text-[8rem]
+          leading-none
+        "
+      >
+        <span className="gold-gradient">
+          Akhil
+        </span>
+
+        <span
+          className="
+            mx-4
+            font-heading
+            text-3xl
+            text-white/80
+            align-middle
+          "
+        >
+          &
+        </span>
+
+        <span className="gold-gradient">
+          Saranya
+        </span>
       </h1>
 
-      <p className="my-4 text-3xl text-[#d8b97b]">
-        ♥
-      </p>
+      <div
+        className="
+          mt-10
+          h-px
+          w-32
+          bg-gradient-to-r
+          from-transparent
+          via-[#C8A96A]
+          to-transparent
+        "
+      />
 
-      <h2 className="font-script gold-gradient text-7xl sm:text-8xl md:text-9rem">
-        Saranya
-      </h2>
+      <div className="mt-8 space-y-2">
 
-      <div className="mt-12 space-y-2">
-
-        <p className="tracking-[0.35em] uppercase text-sm">
+        <p
+          className="
+            text-sm
+            uppercase
+            tracking-[0.4em]
+            text-[#D8B97B]
+          "
+        >
           21 August 2026
         </p>
 
-        <p className="tracking-[0.3em] uppercase text-xs">
+        <p
+          className="
+            text-xs
+            uppercase
+            tracking-[0.35em]
+            text-white/80
+          "
+        >
           Friday
         </p>
 

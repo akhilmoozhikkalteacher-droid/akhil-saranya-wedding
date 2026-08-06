@@ -204,19 +204,24 @@ export const story: StoryItem[] = [
  * ========================================================== */
 
 export const gallery = [
-  {
-    src: "/images/gallery/DSC02127.jpeg",
-    alt: "Akhil and Saranya",
-  },
-  {
-    src: "/images/gallery/IMG_7621.jpeg",
-    alt: "Akhil and Saranya",
-  },
-  {
-    src: "/images/gallery/IMG_7630.jpeg",
-    alt: "Akhil and Saranya",
-  },
-];
+    {
+      src: "/images/gallery/DSC02127.jpeg",
+      alt: "Akhil & Saranya",
+      featured: true,
+    },
+    {
+      src: "/images/gallery/IMG_7611.jpeg",
+      alt: "A beautiful moment together",
+    },
+    {
+      src: "/images/gallery/IMG_7621.jpeg",
+      alt: "A cherished memory",
+    },
+    {
+      src: "/images/gallery/IMG_7630.jpeg",
+      alt: "Together forever",
+    },
+  ];
 
 /* ==========================================================
  * Default Wishes

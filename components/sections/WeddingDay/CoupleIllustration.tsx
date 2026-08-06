@@ -7,11 +7,15 @@ import Floating from "@/components/ui/Floating";
 
 export default function CoupleIllustration() {
   return (
-    <Reveal duration={1} y={30}>
+    <Reveal
+      variant="fade-up"
+      duration={1}
+    >
       <section className="relative mt-24 flex justify-center">
-
-        <Floating amplitude={8} duration={6}>
-
+        <Floating
+          amplitude={8}
+          duration={6}
+        >
           <div className="relative">
 
             {/* Ambient Glow */}
@@ -42,15 +46,13 @@ export default function CoupleIllustration() {
               className="
                 relative
                 z-10
-                select-none
                 pointer-events-none
+                select-none
               "
             />
 
           </div>
-
         </Floating>
-
       </section>
     </Reveal>
   );

@@ -1,13 +1,15 @@
 "use client";
 
-import ChapterHeading from "@/components/ui/ChapterHeading";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function WishesHeading() {
   return (
-    <ChapterHeading
-      chapter="Chapter VI"
+    <SectionHeading
+      chapter="Chapter IV"
       title="Wedding Wishes"
-      subtitle="Leave your heartfelt blessings and become a cherished part of our wedding memories."
+      character="reading-wishes"
+      characterPosition="right"
+      description="Your kind words, blessings and prayers will become cherished memories that we will treasure long after our wedding day."
     />
   );
 }

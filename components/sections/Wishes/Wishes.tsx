@@ -6,9 +6,6 @@ import PaperTexture from "@/components/ui/PaperTexture";
 import FloatingGlow from "@/components/ui/FloatingGlow";
 import FloralDivider from "@/components/ui/FloralDivider";
 import Reveal from "@/components/ui/Reveal";
-import Floating from "@/components/ui/Floating";
-
-import { Saranya } from "@/components/characters";
 
 import WishesHeading from "./WishesHeading";
 import WishesIntro from "./WishesIntro";
@@ -45,26 +42,6 @@ export default function Wishes() {
       />
 
       <div className="relative z-10">
-
-        {/* Character */}
-
-        <Reveal>
-
-          <div className="mb-14 flex justify-center">
-
-            <Floating
-              amplitude={8}
-              duration={6}
-            >
-              <Saranya
-                pose="thankyou"
-                size="lg"
-              />
-            </Floating>
-
-          </div>
-
-        </Reveal>
 
         {/* Heading */}
 

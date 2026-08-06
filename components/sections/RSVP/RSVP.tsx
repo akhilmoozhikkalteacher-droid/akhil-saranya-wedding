@@ -4,10 +4,8 @@ import Section from "@/components/ui/Section";
 
 import PaperTexture from "@/components/ui/PaperTexture";
 import FloatingGlow from "@/components/ui/FloatingGlow";
+import FloralDivider from "@/components/ui/FloralDivider";
 import Reveal from "@/components/ui/Reveal";
-import Floating from "@/components/ui/Floating";
-
-import { Akhil } from "@/components/characters";
 
 import RSVPHeading from "./RSVPHeading";
 import RSVPForm from "./RSVPForm";
@@ -42,39 +40,30 @@ export default function RSVP() {
 
       <div className="relative z-10">
 
-        {/* Character */}
-
-        <Reveal>
-          <div className="mb-14 flex justify-center">
-
-            <Floating
-              amplitude={8}
-              duration={6}
-            >
-              <Akhil
-                pose="wave"
-                size="lg"
-              />
-            </Floating>
-
-          </div>
-        </Reveal>
-
         {/* Heading */}
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.08}>
+
           <RSVPHeading />
+
         </Reveal>
 
-        {/* Form */}
+        {/* RSVP Form */}
 
-        <Reveal delay={0.2}>
-          <div className="mt-20">
+        <Reveal delay={0.16}>
+
+          <div className="mx-auto mt-20 max-w-3xl">
+
             <RSVPForm />
+
           </div>
+
         </Reveal>
+
+        <FloralDivider />
 
       </div>
+
     </Section>
   );
 }

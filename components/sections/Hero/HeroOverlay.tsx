@@ -23,9 +23,9 @@ export default function HeroOverlay() {
           absolute
           inset-0
           bg-gradient-to-b
-          from-black/60
-          via-black/15
-          to-black/55
+          from-black/45
+          via-black/10
+          to-black/40
         "
       />
 

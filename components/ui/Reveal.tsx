@@ -1,39 +1,68 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { motion, Variants } from "framer-motion";
+
+import {
+  fade,
+  fadeUp,
+  fadeBlur,
+  scaleIn,
+} from "@/lib/motion";
+
+type RevealVariant =
+  | "fade"
+  | "fade-up"
+  | "fade-blur"
+  | "scale";
 
 interface RevealProps {
   children: ReactNode;
+
   delay?: number;
-  y?: number;
+
   duration?: number;
+
+  variant?: RevealVariant;
+
+  once?: boolean;
 }
+
+const variants: Record<RevealVariant, Variants> = {
+  fade,
+
+  "fade-up": fadeUp,
+
+  "fade-blur": fadeBlur,
+
+  scale: scaleIn,
+};
 
 export default function Reveal({
   children,
+
   delay = 0,
-  y = 40,
-  duration = 0.8,
+
+  duration,
+
+  variant = "fade-up",
+
+  once = true,
 }: RevealProps) {
+  const selected = variants[variant];
+
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        y,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
+      variants={selected}
+      initial="hidden"
+      whileInView="visible"
       viewport={{
-        once: true,
+        once,
         amount: 0.2,
       }}
       transition={{
-        duration,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        duration,
       }}
     >
       {children}

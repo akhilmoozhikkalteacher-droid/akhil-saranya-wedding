@@ -1,13 +1,14 @@
 "use client";
 
-import ChapterHeading from "@/components/ui/ChapterHeading";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function StoryHeading() {
   return (
-    <ChapterHeading
-      chapter="Chapter III"
+    <SectionHeading
+      chapter="Chapter I"
       title="Our Story"
-      description="Every beautiful love story begins with a single moment. What followed was a journey filled with laughter, unforgettable memories, heartfelt promises, and countless reasons to believe that forever truly exists."
+      character="holding-hands"
+      description="Every love story is woven from countless little moments. Here are a few chapters from ours that brought us to this beautiful beginning."
     />
   );
 }
