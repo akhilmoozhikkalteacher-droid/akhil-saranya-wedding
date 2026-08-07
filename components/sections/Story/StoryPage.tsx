@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 import LuxuryCard from "@/components/ui/LuxuryCard";
 import GoldDivider from "@/components/ui/GoldDivider";
@@ -15,6 +15,18 @@ interface Props {
   delay?: number;
 }
 
+const revealVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
+
 export default function StoryPage({
   date,
   title,
@@ -24,40 +36,36 @@ export default function StoryPage({
   delay = 0,
 }: Props) {
   return (
-    <motion.section
-      initial={{
-        opacity: 0,
-        y: 60,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
+    <motion.article
+      variants={revealVariants}
+      initial="hidden"
+      whileInView="visible"
       viewport={{
         once: true,
-        amount: 0.25,
+        amount: 0.12,
       }}
       transition={{
-        duration: 0.9,
+        duration: 0.7,
         delay,
+        ease: [0.22, 1, 0.36, 1],
       }}
-      className="mx-auto max-w-6xl"
+      className="mx-auto w-full max-w-6xl"
     >
-      {/* =======================================================
-          TEXT PAGE
-      ======================================================= */}
+      {/* TEXT PAGE */}
 
       {layout === "text" && (
-        <div className="py-12 md:py-20">
+        <div className="py-6 sm:py-10 md:py-16">
 
           <div className="mx-auto max-w-3xl text-center">
 
             <p
               className="
-                text-xs
+                text-[10px]
                 uppercase
-                tracking-[0.55em]
+                tracking-[0.35em]
                 text-[#C8A96A]
+                sm:text-xs
+                sm:tracking-[0.55em]
               "
             >
               {date}
@@ -65,25 +73,33 @@ export default function StoryPage({
 
             <h2
               className="
-                mt-8
+                mt-5
                 font-heading
-                text-5xl
+                text-4xl
+                leading-tight
+                sm:text-5xl
+                md:mt-8
                 md:text-7xl
               "
             >
               {title}
             </h2>
 
-            <GoldDivider className="mt-12" />
+            <GoldDivider className="mt-8 md:mt-12" />
 
             <p
               className="
                 mx-auto
-                mt-12
+                mt-8
                 max-w-2xl
-                text-xl
-                leading-10
+                text-base
+                leading-8
                 text-neutral-600
+                sm:text-lg
+                sm:leading-9
+                md:mt-12
+                md:text-xl
+                md:leading-10
               "
             >
               {text}
@@ -94,36 +110,25 @@ export default function StoryPage({
         </div>
       )}
 
-      {/* =======================================================
-          PHOTO PAGE
-      ======================================================= */}
+      {/* PHOTO PAGE */}
 
       {layout === "photo" && (
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-10 md:space-y-12">
+
+          {/* Photograph */}
 
           {image && (
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 1.08,
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 1,
-              }}
+            <div
               className="
                 overflow-hidden
-                rounded-[40px]
+                rounded-[24px]
                 border
                 border-[#E8DFD5]
                 bg-white
-                shadow-[0_30px_80px_rgba(0,0,0,0.12)]
+                shadow-[0_20px_55px_rgba(0,0,0,0.10)]
+                sm:rounded-[30px]
+                md:rounded-[40px]
+                md:shadow-[0_30px_80px_rgba(0,0,0,0.12)]
               "
             >
               <Image
@@ -131,30 +136,47 @@ export default function StoryPage({
                 alt={title}
                 width={1800}
                 height={1200}
+                sizes="
+                  (max-width: 640px) 100vw,
+                  (max-width: 1024px) 90vw,
+                  1000px
+                "
                 className="
+                  block
                   h-auto
                   w-full
                   object-cover
                   transition-transform
                   duration-700
-                  hover:scale-[1.03]
+                  md:hover:scale-[1.03]
                 "
               />
-            </motion.div>
+            </div>
           )}
+
+          {/* Story Card */}
 
           <LuxuryCard
             hover={false}
-            className="px-10 py-14 md:px-20 md:py-20"
+            className="
+              px-6
+              py-10
+              sm:px-10
+              sm:py-12
+              md:px-20
+              md:py-20
+            "
           >
             <div className="mx-auto max-w-3xl text-center">
 
               <p
                 className="
-                  text-xs
+                  text-[10px]
                   uppercase
-                  tracking-[0.55em]
+                  tracking-[0.35em]
                   text-[#C8A96A]
+                  sm:text-xs
+                  sm:tracking-[0.55em]
                 "
               >
                 {date}
@@ -162,24 +184,30 @@ export default function StoryPage({
 
               <h2
                 className="
-                  mt-8
+                  mt-5
                   font-heading
-                  text-5xl
+                  text-4xl
+                  leading-tight
+                  sm:text-5xl
+                  md:mt-8
                   md:text-6xl
                 "
               >
                 {title}
               </h2>
 
-              <GoldDivider className="mt-12" />
+              <GoldDivider className="mt-8 md:mt-12" />
 
               <p
                 className="
                   mx-auto
-                  mt-12
-                  text-lg
-                  leading-9
+                  mt-8
+                  text-base
+                  leading-8
                   text-neutral-600
+                  sm:text-lg
+                  sm:leading-9
+                  md:mt-12
                 "
               >
                 {text}
@@ -190,6 +218,6 @@ export default function StoryPage({
 
         </div>
       )}
-    </motion.section>
+    </motion.article>
   );
 }
