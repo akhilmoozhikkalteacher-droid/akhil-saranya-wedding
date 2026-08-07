@@ -1,11 +1,8 @@
 "use client";
 
 import Section from "@/components/ui/Section";
-
 import PaperTexture from "@/components/ui/PaperTexture";
 import FloatingGlow from "@/components/ui/FloatingGlow";
-import Reveal from "@/components/ui/Reveal";
-
 import StoryHeading from "./StoryHeading";
 import StoryTimeline from "./StoryTimeline";
 import StoryQuote from "./StoryQuote";
@@ -14,7 +11,13 @@ export default function Story() {
   return (
     <Section
       id="story"
-      className="relative overflow-hidden paper"
+      className="
+        relative
+        overflow-hidden
+        paper
+        py-24
+        md:py-32
+      "
     >
       {/* Background */}
 
@@ -47,40 +50,49 @@ export default function Story() {
         size={260}
       />
 
+      {/* Content */}
+
       <div className="relative z-10">
 
-        {/* Chapter Heading */}
+        {/* Heading */}
 
-        <Reveal delay={0.08}>
+        <div className="px-5 sm:px-6">
           <StoryHeading />
-        </Reveal>
+        </div>
 
-        {/* Story Book */}
+        {/* Story Timeline */}
 
-        <Reveal delay={0.16}>
-
-          <div className="mx-auto mt-24 max-w-5xl">
-
-            <StoryTimeline />
-
-          </div>
-
-        </Reveal>
+        <div
+          className="
+            mx-auto
+            mt-16
+            w-full
+            max-w-5xl
+            px-5
+            sm:px-6
+            md:mt-24
+          "
+        >
+          <StoryTimeline />
+        </div>
 
         {/* Closing Quote */}
 
-        <Reveal delay={0.24}>
-
-          <div className="mx-auto mt-28 max-w-4xl">
-
-            <StoryQuote />
-
-          </div>
-
-        </Reveal>
+        <div
+          className="
+            mx-auto
+            mt-20
+            w-full
+            max-w-4xl
+            px-5
+            sm:px-6
+            md:mt-28
+          "
+        >
+          <StoryQuote />
+        </div>
 
       </div>
-
     </Section>
   );
 }
