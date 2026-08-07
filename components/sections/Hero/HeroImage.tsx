@@ -1,47 +1,52 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function HeroImage() {
+  const reducedMotion = useReducedMotion();
+
   return (
     <motion.div
       className="absolute inset-0"
-      initial={{
-        opacity: 0,
-        scale: 1.06,
-      }}
-      animate={{
-        opacity: 1,
-        scale: [1.02, 1.04, 1.02],
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        opacity: {
-          duration: 1.6,
-          ease: "easeOut",
-        },
-
-        scale: {
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut",
-        },
+        duration: 1.2,
+        ease: "easeOut",
       }}
     >
-      <Image
-        src="/images/hero/landing.jpg"
-        alt="Akhil and Saranya"
-        fill
-        priority
-        quality={95}
-        sizes="100vw"
-        className="
-          select-none
-          object-cover
-          object-center
-        "
-      />
+      <motion.div
+        className="absolute inset-0"
+        initial={{
+          scale: reducedMotion ? 1 : 1.015,
+        }}
+        animate={{
+          scale: reducedMotion ? 1 : 1.035,
+        }}
+        transition={
+          reducedMotion
+            ? undefined
+            : {
+                duration: 24,
+                ease: "easeInOut",
+              }
+        }
+      >
+        <Image
+          src="/images/hero/landing.webp"
+          alt="Akhil and Saranya"
+          fill
+          priority
+          quality={75}
+          sizes="100vw"
+          className="
+            select-none
+            object-cover
+            object-center
+          "
+        />
+      </motion.div>
     </motion.div>
   );
 }
