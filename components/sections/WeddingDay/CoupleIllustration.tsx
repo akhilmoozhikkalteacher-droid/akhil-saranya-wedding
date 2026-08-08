@@ -46,8 +46,10 @@ export default function CoupleIllustration() {
               className="
                 relative
                 z-10
-                pointer-events-none
+                h-auto
+                w-auto
                 select-none
+                pointer-events-none
               "
             />
 

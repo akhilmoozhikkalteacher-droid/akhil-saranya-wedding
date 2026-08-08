@@ -1,47 +1,35 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 import LuxuryCard from "@/components/ui/LuxuryCard";
 import GoldDivider from "@/components/ui/GoldDivider";
 
 interface WishCardProps {
   name: string;
   message: string;
-  delay?: number;
 }
 
 export default function WishCard({
   name,
   message,
-  delay = 0,
 }: WishCardProps) {
   return (
-    <motion.article
-      initial={{
-        opacity: 0,
-        y: 24,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-      }}
-      transition={{
-        duration: 0.6,
-        delay,
-      }}
-    >
+    <article className="h-full animate-wish-card">
+
       <LuxuryCard
-        className="h-full px-8 py-10"
+        className="
+          h-full
+          px-6
+          py-8
+          sm:px-8
+          sm:py-10
+        "
       >
         <div className="flex h-full flex-col">
 
           {/* Quote */}
 
           <div
+            aria-hidden="true"
             className="
               text-5xl
               leading-none
@@ -50,6 +38,8 @@ export default function WishCard({
           >
             “
           </div>
+
+          {/* Message */}
 
           <p
             className="
@@ -62,7 +52,11 @@ export default function WishCard({
             {message}
           </p>
 
+          {/* Divider */}
+
           <GoldDivider className="mt-8" />
+
+          {/* Author */}
 
           <div className="mt-8">
 
@@ -91,6 +85,6 @@ export default function WishCard({
 
         </div>
       </LuxuryCard>
-    </motion.article>
+    </article>
   );
 }

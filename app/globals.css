@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* ==========================================
+   Design Tokens
+========================================== */
+
 :root {
   /* Colors */
   --background: #faf8f5;
@@ -23,9 +27,15 @@
 
   /* Layout */
   --radius: 24px;
+
+  /* Shadows */
   --shadow:
     0 20px 60px rgba(0, 0, 0, 0.08);
 }
+
+/* ==========================================
+   Global Reset
+========================================== */
 
 *,
 *::before,
@@ -35,6 +45,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -42,9 +53,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
+
   overflow-x: hidden;
+
+  /*
+   * Avoid unnecessary text rendering work on
+   * older devices while keeping typography clean.
+   */
   text-rendering: optimizeLegibility;
+
+  /*
+   * Prevent accidental horizontal overflow.
+   */
+  width: 100%;
 }
+
+/* ==========================================
+   Media
+========================================== */
 
 img {
   display: block;
@@ -61,12 +87,18 @@ a {
   text-decoration: none;
 }
 
+/* ==========================================
+   Selection
+========================================== */
+
 ::selection {
   background: var(--gold);
   color: white;
 }
 
-/* Typography */
+/* ==========================================
+   Typography
+========================================== */
 
 .font-heading {
   font-family: var(--font-heading);
@@ -80,7 +112,9 @@ a {
   font-family: var(--font-script);
 }
 
-/* Gradient Text */
+/* ==========================================
+   Gradient Text
+========================================== */
 
 .gold-gradient {
   background: linear-gradient(
@@ -97,19 +131,23 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-/* Paper Background */
+/* ==========================================
+   Paper Background
+========================================== */
 
 .paper {
   background:
     radial-gradient(
       circle at top,
-      rgba(255,255,255,.45),
+      rgba(255, 255, 255, 0.45),
       transparent 70%
     ),
     var(--background);
 }
 
-/* Elegant Divider */
+/* ==========================================
+   Elegant Divider
+========================================== */
 
 .divider {
   width: 90px;
@@ -118,7 +156,9 @@ a {
   background: var(--gold);
 }
 
-/* Section spacing */
+/* ==========================================
+   Section Spacing
+========================================== */
 
 .section {
   padding: 7rem 1.5rem;
@@ -130,7 +170,50 @@ a {
   }
 }
 
-/* Scrollbar */
+/* ==========================================
+   Wishes
+   Lightweight card entrance animation
+========================================== */
+
+@keyframes wishCardIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-wish-card {
+  animation:
+    wishCardIn 0.5s ease-out both;
+}
+
+/* ==========================================
+   Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================
+   Scrollbar
+========================================== */
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -147,4 +230,25 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-dark);
+}
+
+/* ==========================================
+   Mobile Performance
+========================================== */
+
+@media (max-width: 767px) {
+  /*
+   * Reduce expensive visual effects on small
+   * screens without changing the design system.
+   */
+
+  .paper {
+    background:
+      radial-gradient(
+        circle at top,
+        rgba(255, 255, 255, 0.35),
+        transparent 65%
+      ),
+      var(--background);
+  }
 }
